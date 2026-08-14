@@ -131,3 +131,32 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     target.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
+/* ===== Spacebar Play/Pause ===== */
+
+document.addEventListener("keydown", (e) => {
+  // Ignore when typing in an input or textarea
+  const tag = document.activeElement.tagName;
+  if (tag === "INPUT" || tag === "TEXTAREA") return;
+
+  // Spacebar
+  if (e.code === "Space") {
+    e.preventDefault();
+
+    // Find the first visible portfolio video
+    const videos = document.querySelectorAll(".portfolio-video");
+
+    for (const video of videos) {
+      const rect = video.getBoundingClientRect();
+
+      // Video currently on screen
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+        break;
+      }
+    }
+  }
+});
