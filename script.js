@@ -157,26 +157,3 @@ document.addEventListener("keydown", (e) => {
         }
     }
 });
-/* ===== F = Fullscreen ===== */
-
-document.addEventListener("keydown", (e) => {
-    const tag = document.activeElement.tagName;
-    if (tag === "INPUT" || tag === "TEXTAREA") return;
-
-    if (e.key.toLowerCase() !== "f") return;
-
-    const videos = document.querySelectorAll(".project-video");
-
-    for (const video of videos) {
-        const rect = video.getBoundingClientRect();
-
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-            if (!document.fullscreenElement) {
-                video.requestFullscreen();
-            } else {
-                document.exitFullscreen();
-            }
-            break;
-        }
-    }
-});
