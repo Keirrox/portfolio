@@ -270,5 +270,39 @@
   </footer>
 
   <script src="script.js"></script>
+
+<script>
+  // Track portfolio video plays
+  document.querySelectorAll('.project-video').forEach((video) => {
+    video.addEventListener('play', function () {
+      const source = this.querySelector('source');
+      const videoName = source
+        ? source.getAttribute('src').split('/').pop().replace('.mp4', '')
+        : 'Unknown';
+
+      gtag('event', 'portfolio_video_play', {
+        video_name: videoName
+      });
+    }, { once: true });
+  });
+
+  // Track email and Instagram clicks
+  document.querySelectorAll('a[aria-label="Email"]').forEach((link) => {
+    link.addEventListener('click', function () {
+      gtag('event', 'contact_click', {
+        contact_method: 'email'
+      });
+    });
+  });
+
+  document.querySelectorAll('a[aria-label="Instagram"]').forEach((link) => {
+    link.addEventListener('click', function () {
+      gtag('event', 'contact_click', {
+        contact_method: 'instagram'
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
