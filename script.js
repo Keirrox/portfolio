@@ -102,7 +102,7 @@ const preloader = document.getElementById("preloader");
 const started = performance.now();
 
 function finishLoading() {
-  const wait = Math.max(0, 1100 - (performance.now() - started));
+  const wait = Math.max(0, 250 - (performance.now() - started));
   setTimeout(() => {
     preloader?.classList.add("hide");
     document.body.classList.remove("is-loading");
